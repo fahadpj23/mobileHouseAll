@@ -24,6 +24,7 @@
       "@constants/*":["./constants/*"],
       "@pages/*":["./pages/*"],
       "@Layout/*":["./Layout/*"],
+      "@model":["./model/*"]
     }
   },
   "include": [

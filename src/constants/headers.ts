@@ -1,18 +1,24 @@
-const Headers = [
+import headerModel from "model/headerModel";
+
+const Headers: headerModel[] = [
   {
-    Name: "Home",
+    id: 1,
+    name: "Home",
     route: "/home",
   },
   {
-    Name: "purchase",
+    id: 2,
+    name: "purchase",
     route: "/purchase",
   },
   {
-    Name: "sales",
+    id: 3,
+    name: "sales",
     route: "/sales",
   },
   {
-    Name: "inventory",
+    id: 4,
+    name: "inventory",
     route: "/inventory",
   },
 ];

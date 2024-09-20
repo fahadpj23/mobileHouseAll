@@ -1,7 +1,9 @@
+import Header from "./header";
+
 const MainLayout = ({ children }: any) => {
   return (
-    <div>
-      <h1>header</h1>
+    <div className="p-3">
+      <Header />
       <main>{children}</main>
     </div>
   );
