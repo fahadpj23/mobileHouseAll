@@ -1,9 +1,9 @@
-import Header from "./header";
+import SideBar from "./sideBar";
 
 const MainLayout = ({ children }: any) => {
   return (
-    <div className="p-3">
-      <Header />
+    <div className="flex h-screen">
+      <SideBar />
       <main>{children}</main>
     </div>
   );
