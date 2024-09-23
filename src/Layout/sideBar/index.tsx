@@ -8,7 +8,7 @@ import SideBarItems from "constants/sideBarItems";
 import sideBarModel from "model/sideBarModel";
 
 const SideBar = () => {
-  const [open, setOpen] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <div className="absolute top-0 left-0 w-40 ">
