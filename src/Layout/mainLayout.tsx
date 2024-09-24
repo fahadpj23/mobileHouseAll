@@ -1,10 +1,23 @@
+import { useState } from "react";
+
 import SideBar from "./sideBar";
 
 const MainLayout = ({ children }: any) => {
+  const [sideBarOpen, setSideBarOpen] = useState<boolean>(false);
   return (
     <div className="flex h-screen w-screen">
-      <SideBar />
-      <div className="bg-grayBackground p-5 rounded-sm">
+      <div
+        className={`${
+          sideBarOpen ? "w-40" : "w-20"
+        } transition-width duration-300 overflow-hidden bg-gray-800 shadow-xl bg-whiteBackground`}
+      >
+        <SideBar sideBarOpen={sideBarOpen} setSideBarOpen={setSideBarOpen} />
+      </div>
+      <div
+        className={`${
+          sideBarOpen ? "w-[calc(100%-10rem)]" : "w-full"
+        } transition-width duration-3000 bg-grayBackground m-4 p-5 rounded-xl shadow-2xl `}
+      >
         <main>{children}</main>
       </div>
     </div>
