@@ -14,8 +14,8 @@ const SideBar = () => {
     <div className="absolute top-0 left-0 w-40 ">
       <div
         className={` ${
-          open ? "translate-x-0" : "-translate-x-3/4"
-        }  relative ease-in-out delay-600 transition bg-grayBackground h-screen   `}
+          open ? "translate-x-0" : "-translate-x-28"
+        }  relative ease-in-out delay-600 transition bg-whiteBackground h-screen shadow-xl  `}
       >
         <div className="flex justify-between ">
           <h1>Mobile House</h1>
@@ -30,7 +30,7 @@ const SideBar = () => {
         <div className="flex flex-col justify-center h-3/6">
           {SideBarItems.map((sidebar: sideBarModel) => {
             return (
-              <div className=" w-full text-textGrayColor  hover:text-textBlackColor hover:font-bold p-2 ">
+              <div className=" w-full text-textBlackColor  hover:text-textBlackColor hover:font-bold p-2 ">
                 <Link
                   className={`flex items-center  ${
                     open ? "justify-start space-x-2" : "justify-end space-x-0"

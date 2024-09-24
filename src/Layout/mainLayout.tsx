@@ -2,9 +2,11 @@ import SideBar from "./sideBar";
 
 const MainLayout = ({ children }: any) => {
   return (
-    <div className="flex h-screen ">
+    <div className="flex h-screen w-screen">
       <SideBar />
-      <main>{children}</main>
+      <div className="bg-grayBackground p-5 rounded-sm">
+        <main>{children}</main>
+      </div>
     </div>
   );
 };
