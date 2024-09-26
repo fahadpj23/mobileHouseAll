@@ -24,10 +24,14 @@
       "@constants/*":["./constants/*"],
       "@pages/*":["./pages/*"],
       "@Layout/*":["./Layout/*"],
-      "@model":["./model/*"]
+      "@model/*":["./model/*"],
+      "@components/*":["./components/*"],
+      "@asset/*":["./asset/*"]
+
     }
   },
   "include": [
-    "src"
+    "src",
+    "public"
   ]
 }
