@@ -9,7 +9,7 @@ const MainLayout = ({ children }: any) => {
       <div
         className={`${
           sideBarOpen ? "w-40" : "w-20"
-        } transition-width duration-300 overflow-hidden bg-gray-800 shadow-xl bg-whiteBackground`}
+        } transition-width duration-300 overflow-hiddenshadow-xl bg-whiteBackground`}
       >
         <SideBar sideBarOpen={sideBarOpen} setSideBarOpen={setSideBarOpen} />
       </div>
