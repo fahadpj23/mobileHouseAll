@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import Icon from "@mui/material/Icon";
+
+import DynamicMuiIcon from "utils/dynamicMuiIcon";
 
 interface props {
   icon: any;
@@ -8,7 +9,7 @@ interface props {
 const SubHeadingWithLogo: FC<props> = ({ icon, title }) => {
   return (
     <div className="flex h-20">
-      <h1>{icon}</h1>
+      <DynamicMuiIcon iconName={icon} />
       <h1>{title}</h1>
     </div>
   );

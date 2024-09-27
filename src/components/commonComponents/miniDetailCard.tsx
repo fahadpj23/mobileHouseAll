@@ -1,9 +1,9 @@
 import sales from "assets/svg/sales.svg";
 const MiniDetailCard = () => {
   return (
-    <div className="bg-whiteBackground shadow-lg p-2 ">
-      <div className="  flex p-2 space-x-3 bg-cardBlueBackground rounded-xl">
-        <div className="  flex flex-col  justify-center ">
+    <div className="bg-whiteBackground shadow-lg p-2  rounded-xl">
+      <div className="  flex p-2 space-x-3 ">
+        <div className="  flex flex-col  justify-center items-center bg-cardBlueBackground rounded-xl w-16 ">
           <img src={sales} width={20} height={10} alt="logo" />
         </div>
         <div>

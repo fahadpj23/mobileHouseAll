@@ -26,7 +26,8 @@
       "@Layout/*":["./Layout/*"],
       "@model/*":["./model/*"],
       "@components/*":["./components/*"],
-      "@asset/*":["./asset/*"]
+      "@asset/*":["./asset/*"],
+      "@utils/*":["./utils/*"]
 
     }
   },
