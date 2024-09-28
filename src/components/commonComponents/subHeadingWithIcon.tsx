@@ -1,12 +1,17 @@
 import React, { FC } from "react";
 
+import * as MuiIcons from "@mui/icons-material";
+
 import DynamicMuiIcon from "utils/dynamicMuiIcon";
 
+type MuiIconKeys = keyof typeof MuiIcons;
+
 interface props {
-  icon: any;
+  icon: MuiIconKeys;
   title: string;
 }
-const SubHeadingWithLogo: FC<props> = ({ icon, title }) => {
+
+const SubHeadingWithIcon: FC<props> = ({ icon, title }) => {
   return (
     <div className="flex h-20">
       <DynamicMuiIcon iconName={icon} />
@@ -14,4 +19,4 @@ const SubHeadingWithLogo: FC<props> = ({ icon, title }) => {
     </div>
   );
 };
-export default SubHeadingWithLogo;
+export default SubHeadingWithIcon;
