@@ -1,4 +1,4 @@
 const Sales = () => {
-  return <div>Sales</div>;
+  return <div>Seller</div>;
 };
 export default Sales;

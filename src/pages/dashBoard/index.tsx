@@ -25,9 +25,19 @@ const DashBoard = () => {
     },
   ];
 
-  const DetailTable = ({ TableHeadRow, TableDataRow, title, icon }: any) => (
-    <div className="mt-5 w-[45%]">
-      <SubHeadingWithIcon icon={icon?.toString()} title={title} />
+  const DetailTable = ({
+    TableHeadRow,
+    TableDataRow,
+    title,
+    icon,
+    link,
+  }: any) => (
+    <div className="mt-5 w-[48%]">
+      <SubHeadingWithIcon
+        icon={icon?.toString()}
+        title={title}
+        linkSrc={link}
+      />
       <div className="h-[25vh]">
         <ListTable tableHead={TableHeadRow} tableData={TableDataRow} />
       </div>
@@ -43,32 +53,36 @@ const DashBoard = () => {
       <div className="flex justify-evenly">
         <MiniDetailCard />
       </div>
-      <div className="flex space-x-3 ">
+      <div className="flex justify-between ">
         <DetailTable
           TableHeadRow={PurchaseTableHead}
           TableDataRow={tableData}
           title="Purchase"
           icon={"ShoppingCartOutlined"}
+          link="/purchase"
         />
         <DetailTable
           TableHeadRow={PurchaseTableHead}
           TableDataRow={tableData}
           title="Sales"
           icon="ArticleOutlined"
+          link="/sales"
         />
       </div>
-      <div className="flex space-x-3">
+      <div className="flex justify-between">
         <DetailTable
           TableHeadRow={PurchaseTableHead}
           TableDataRow={tableData}
           title="Inventory"
           icon="ArticleOutlined"
+          link="/inventory"
         />
         <DetailTable
           TableHeadRow={PurchaseTableHead}
           TableDataRow={tableData}
-          title="Inventory"
+          title="Customers"
           icon="PeopleAltOutlined"
+          link="/customers"
         />
       </div>
     </div>

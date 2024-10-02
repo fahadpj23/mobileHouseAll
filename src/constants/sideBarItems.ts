@@ -1,30 +1,43 @@
 import * as MuiIcons from "@mui/icons-material";
 
 import sideBarModel from "model/sideBarModel";
+import ROUTES from "./routes";
 
 const sideBarItems: sideBarModel[] = [
   {
     id: 1,
     name: "dashBoard",
-    route: "/dashBoard",
+    route: ROUTES.DASHBOARD,
     icon: MuiIcons.RocketLaunchOutlined,
   },
   {
     id: 2,
     name: "purchase",
-    route: "/purchase",
+    route: ROUTES.PURCHASEROUTE,
     icon: MuiIcons.ShoppingCartOutlined,
   },
   {
     id: 3,
     name: "sales",
-    route: "/sales",
+    route: ROUTES.SALESROUTE,
     icon: MuiIcons.ArticleOutlined,
   },
   {
     id: 4,
     name: "inventory",
-    route: "/inventory",
+    route: ROUTES.INVENTORYROUTE,
+    icon: MuiIcons.StorefrontOutlined,
+  },
+  {
+    id: 5,
+    name: "customers",
+    route: ROUTES.CUSTOMERSROUTE,
+    icon: MuiIcons.PeopleAltOutlined,
+  },
+  {
+    id: 6,
+    name: "seller",
+    route: ROUTES.SELLERROUTE,
     icon: MuiIcons.StorefrontOutlined,
   },
 ];
