@@ -10,7 +10,7 @@ const MiniDetailCard = () => {
         dashBoardCardItems.map((cardItems: dashBoardCardItemsModel) => (
           <div
             key={cardItems.id}
-            className="bg-whiteBackground shadow-lg p-2 w-2/12 rounded-xl h-24 flex items-center justify-center"
+            className="bg-whiteBackground shadow-lg p-2 w-60 rounded-xl h-24 flex items-center justify-center"
           >
             <div className="  flex p-1 space-x-3 ">
               <div

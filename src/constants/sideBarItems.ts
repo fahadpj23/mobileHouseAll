@@ -7,25 +7,25 @@ const sideBarItems: sideBarModel[] = [
     id: 1,
     name: "dashBoard",
     route: "/dashBoard",
-    icon: MuiIcons.Home,
+    icon: MuiIcons.RocketLaunchOutlined,
   },
   {
     id: 2,
     name: "purchase",
     route: "/purchase",
-    icon: MuiIcons.ShoppingCart,
+    icon: MuiIcons.ShoppingCartOutlined,
   },
   {
     id: 3,
     name: "sales",
     route: "/sales",
-    icon: MuiIcons.CurrencyExchange,
+    icon: MuiIcons.ArticleOutlined,
   },
   {
     id: 4,
     name: "inventory",
     route: "/inventory",
-    icon: MuiIcons.Inventory,
+    icon: MuiIcons.StorefrontOutlined,
   },
 ];
 
