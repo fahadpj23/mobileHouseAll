@@ -1,10 +1,10 @@
 import DetailsPage from "components/commonComponents/detailsPage";
 
-const Seller = () => {
+const Inventory = () => {
   return (
-    <div>
+    <div className="">
       <DetailsPage />
     </div>
   );
 };
-export default Seller;
+export default Inventory;

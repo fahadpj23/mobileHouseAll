@@ -1,5 +1,10 @@
+import DetailsPage from "components/commonComponents/detailsPage";
+
 const Customers = () => {
-  console.log("fdfd");
-  return <div>Customers</div>;
+  return (
+    <div>
+      <DetailsPage />
+    </div>
+  );
 };
 export default Customers;

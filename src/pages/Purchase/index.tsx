@@ -1,5 +1,10 @@
+import DetailsPage from "components/commonComponents/detailsPage";
+
 const Purchase = () => {
-  console.log("fdfd");
-  return <div>purchase</div>;
+  return (
+    <div className="">
+      <DetailsPage />
+    </div>
+  );
 };
 export default Purchase;
