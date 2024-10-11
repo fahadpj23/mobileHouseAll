@@ -1,5 +1,6 @@
 import CustomSelectBox from "./customSelectBox";
 import CustomTextField from "./customTextField";
+import CustomFileUpload from "./customFileUpload";
 
 const DynamiceFormCreate = () => {
   const formDetails = [
@@ -31,7 +32,8 @@ const DynamiceFormCreate = () => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log(event.target);
+    const data = new FormData(event.target);
+    console.log(data);
   };
   return (
     <div className="w-96 h-96 fixed right-10  top-3 bg-whiteBackground space-y-4 p-2">
@@ -46,6 +48,7 @@ const DynamiceFormCreate = () => {
               );
           }
         })}
+        <CustomFileUpload />
         <button className="bg-red-300" type="submit">
           submit
         </button>
