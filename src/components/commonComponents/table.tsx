@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+
+
 interface tableHeadValue {
   key: string;
   title: string;
@@ -9,6 +11,7 @@ interface props {
   tableData: any;
 }
 const ListTable: FC<props> = ({ tableHead, tableData }) => {
+  
   return (
     <div className="rounded-lg p-1 bg-whiteBackground w-full h-full ">
       <table className="w-full">
