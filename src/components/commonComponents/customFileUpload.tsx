@@ -20,13 +20,13 @@ const CustomFileUpload = () => {
         accept="image/*,application/pdf"
       />
       {selectedFfile && fileType && fileType === "image" ? (
-        <img src={selectedFfile} alt="preview" width="200" height="200" />
+        <img src={selectedFfile} alt="preview" width="50" height="50" />
       ) : (
         <embed
           src={selectedFfile}
           type="application/pdf"
-          width="200"
-          height="200"
+          width="50"
+          height="50"
         />
       )}
     </div>
