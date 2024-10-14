@@ -3,7 +3,7 @@ const ConstantValues = {
   SALES: "sales",
   INVENTORY: "inventory",
   CUSTOMERS: "customers",
-  SELLER: "seller",
+  SUPPLIER: "supplier",
 };
 
 export default ConstantValues;

@@ -8,8 +8,8 @@ const PurchaseTableHead = [
     title: "Invoice Date",
   },
   {
-    key: "seller",
-    title: "Seller",
+    key: "supplier",
+    title: "supplier",
   },
   {
     key: "amount",

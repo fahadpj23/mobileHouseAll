@@ -8,19 +8,19 @@ const DashBoard = () => {
     {
       invoiceNo: 12,
       invoiceDate: "12-05-2024",
-      seller: "ABC",
+      supplier: "ABC",
       amount: 10000,
     },
     {
       invoiceNo: 13,
       invoiceDate: "12-05-2024",
-      seller: "ABC",
+      supplier: "ABC",
       amount: 10000,
     },
     {
       invoiceNo: 14,
       invoiceDate: "12-05-2024",
-      seller: "ABC",
+      supplier: "ABC",
       amount: 10000,
     },
   ];

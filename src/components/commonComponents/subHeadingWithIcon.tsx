@@ -15,7 +15,7 @@ interface props {
 }
 
 const SubHeadingWithIcon: FC<props> = ({ icon, title, linkSrc }) => {
-  console.log(typeof icon);
+
   return (
     <div className="flex w-full justify-between mb-5">
       <div className="flex space-x-2">

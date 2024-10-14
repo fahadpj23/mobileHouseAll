@@ -1,58 +1,70 @@
 import CustomSelectBox from "./customSelectBox";
 import CustomTextField from "./customTextField";
 import CustomFileUpload from "./customFileUpload";
+import { Box, Modal } from "@mui/material";
+import { FC } from "react";
 
-const DynamiceFormCreate = () => {
-  const formDetails = [
-    {
-      label: "name",
-      type: "input",
-      allowNull: true,
-    },
-    {
-      label: "hsn",
-      type: "input",
-      allowNull: false,
-    },
-    {
-      label: "category",
-      type: "select",
-      options: [
-        {
-          id: 1,
-          label: "phone",
-        },
-        {
-          id: 2,
-          label: "accessories",
-        },
-      ],
-    },
-  ];
+interface props {
+  formFieldDetails: any;
+}
+
+const DynamiceFormCreate: FC<props> = ({ formFieldDetails }) => {
+  const modalStyle = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "white",
+    boxShadow: 24,
+    p: 4,
+  };
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    console.log(data);
   };
+
   return (
-    <div className="w-96 h-96 fixed right-10  top-3 bg-whiteBackground space-y-4 p-2">
-      <form onSubmit={handleSubmit}>
-        {formDetails?.map((item, key) => {
-          switch (item.type) {
-            case "input":
-              return <CustomTextField label={item.label} type={item.type} />;
-            case "select":
-              return (
-                <CustomSelectBox label={item.label} options={item.options} />
-              );
-          }
-        })}
-        <CustomFileUpload />
-        <button className="bg-red-300" type="submit">
-          submit
-        </button>
-      </form>
+    <div>
+      <Modal open={true}>
+        <Box sx={modalStyle}>
+          <div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {formFieldDetails?.map((field: any) => {
+                switch (field.type) {
+                  case "text":
+                  case "number":
+                    return (
+                      <CustomTextField
+                        label={field.label}
+                        type={field.type}
+                        fieldProps={field}
+                      />
+                    );
+                  case "select":
+                    return (
+                      <CustomSelectBox
+                        label={field.label}
+                        options={field.options}
+                      />
+                    );
+                  case "file":
+                    return <CustomFileUpload />;
+                }
+              })}
+              <div className="w-full flex justify-end">
+                <button
+                  className="bg-green-500 text-white p-2 rounded-sm"
+                  type="submit"
+                >
+                  submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </Box>
+      </Modal>
     </div>
   );
 };

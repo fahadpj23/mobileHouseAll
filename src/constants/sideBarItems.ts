@@ -36,8 +36,8 @@ const sideBarItems: sideBarModel[] = [
   },
   {
     id: 6,
-    name: "seller",
-    route: ROUTES.SELLERROUTE,
+    name: "supplier",
+    route: ROUTES.SUPPLIERROUTE,
     icon: MuiIcons.StorefrontOutlined,
   },
 ];

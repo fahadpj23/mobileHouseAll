@@ -4,6 +4,6 @@ const ROUTES = {
   SALESROUTE: "./sales",
   INVENTORYROUTE: "/inventory",
   CUSTOMERSROUTE: "/customers",
-  SELLERROUTE: "/seller",
+  SUPPLIERROUTE: "/supplier",
 };
 export default ROUTES;
