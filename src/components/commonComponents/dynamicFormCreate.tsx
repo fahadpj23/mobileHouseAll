@@ -6,9 +6,10 @@ import { FC } from "react";
 
 interface props {
   formFieldDetails: any;
+  addNewDetails?: any;
 }
 
-const DynamiceFormCreate: FC<props> = ({ formFieldDetails }) => {
+const DynamiceFormCreate: FC<props> = ({ formFieldDetails, addNewDetails }) => {
   const modalStyle = {
     position: "absolute",
     top: "50%",
@@ -23,6 +24,7 @@ const DynamiceFormCreate: FC<props> = ({ formFieldDetails }) => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const data = new FormData(event.target);
+    addNewDetails(data);
   };
 
   return (

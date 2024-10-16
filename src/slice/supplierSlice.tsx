@@ -1,18 +1,36 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import axios from "axios";
 const initialState = {
   loading: false,
   suppliersList: [],
   errorMessage: "",
 };
 export const fetchSupplier = createAsyncThunk(
-  "counter/fetchValue",
+  "supplier/fetchValue",
   async () => {
-    const response = await fetch(
+    const response = axios.get(
       "http://localhost:8080/api/supplier/getSupplier"
     );
-    const data = await response.json();
-    return data;
+    return response;
+  }
+);
+
+export const addSupplier = createAsyncThunk(
+  "supplier/addSupplier",
+  async () => {
+    console.log("Fd");
+    const info = {
+      name: "cxc",
+      address: "dsd",
+      phone: 4545454,
+    };
+    const supplierDetails = await axios.post(
+      "http://localhost:8080/api/supplier/addSupplier",
+      info
+    );
+    console.log(supplierDetails);
+    return supplierDetails;
   }
 );
 
@@ -32,6 +50,15 @@ export const supplierSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(fetchSupplier.rejected, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(addSupplier.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(addSupplier.fulfilled, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(addSupplier.rejected, (state) => {
       state.loading = false;
     });
   },

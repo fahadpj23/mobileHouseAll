@@ -5,9 +5,10 @@ import ListTable from "./table";
 import PurchaseTableHead from "constants/purchaseTableHead";
 
 interface props {
-  formFieldDetails?:any
+  formFieldDetails?: any;
+  addNewDetails?: any;
 }
-const DetailsPage:FC<props> = ({formFieldDetails}) => {
+const DetailsPage: FC<props> = ({ formFieldDetails, addNewDetails }) => {
   const tableData = [
     {
       invoiceNo: 12,
@@ -28,14 +29,17 @@ const DetailsPage:FC<props> = ({formFieldDetails}) => {
       amount: 10000,
     },
   ];
- 
+
   return (
     <div>
       <div className="w-full flex justify-end space-x-2 items-center">
         <div className="p-2 flex bg-whiteBackground rounded-lg my-2 w-56 justify-end  ">
           <SearchBar />
         </div>
-        <AddButton formFieldDetails={formFieldDetails} />
+        <AddButton
+          formFieldDetails={formFieldDetails}
+          addNewDetails={addNewDetails}
+        />
       </div>
       <ListTable tableHead={PurchaseTableHead} tableData={tableData} />
     </div>

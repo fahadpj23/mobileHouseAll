@@ -1,7 +1,7 @@
 import DetailsPage from "components/commonComponents/detailsPage";
 
 import { useSelector } from "react-redux";
-import { fetchSupplier } from "slice/supplierSlice";
+import { fetchSupplier, addSupplier } from "slice/supplierSlice";
 import { useEffect } from "react";
 
 import { useAppDispatch, RootState } from "store";
@@ -9,10 +9,14 @@ import { useAppDispatch, RootState } from "store";
 const Supplier = () => {
   const appDispatch = useAppDispatch();
   const { loading } = useSelector((state: RootState) => state.supplier);
-  console.log(loading);
+
   useEffect(() => {
     appDispatch(fetchSupplier());
   }, [appDispatch]);
+
+  const supplierAdd = () => {
+    appDispatch(addSupplier());
+  };
 
   const formFieldDetails = [
     {
@@ -34,7 +38,10 @@ const Supplier = () => {
   ];
   return (
     <div>
-      <DetailsPage formFieldDetails={formFieldDetails} />
+      <DetailsPage
+        formFieldDetails={formFieldDetails}
+        addNewDetails={supplierAdd}
+      />
     </div>
   );
 };
