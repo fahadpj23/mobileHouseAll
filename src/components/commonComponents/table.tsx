@@ -9,7 +9,6 @@ interface props {
   tableData: any;
 }
 const ListTable: FC<props> = ({ tableHead, tableData }) => {
-  console.log(tableData);
   return (
     <div className="rounded-lg p-1 bg-whiteBackground w-full h-full ">
       <table className="w-full">

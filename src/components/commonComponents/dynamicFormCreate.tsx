@@ -1,15 +1,27 @@
+import { FC } from "react";
+import { Box, Modal } from "@mui/material";
+import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
+import CloseIcon from "@mui/icons-material/Close";
+
 import CustomSelectBox from "./customSelectBox";
 import CustomTextField from "./customTextField";
 import CustomFileUpload from "./customFileUpload";
-import { Box, Modal } from "@mui/material";
-import { FC } from "react";
+import supplierAddFormInitialValues from "constants/supplierConstants/supplierAddFormInitialValues";
+import supplierValidationSchema from "constants/supplierConstants/supplierFormValidation";
 
 interface props {
   formFieldDetails: any;
   addNewDetails?: any;
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DynamiceFormCreate: FC<props> = ({ formFieldDetails, addNewDetails }) => {
+const DynamiceFormCreate: FC<props> = ({
+  formFieldDetails,
+  addNewDetails,
+  modalOpen,
+  setModalOpen,
+}) => {
   const modalStyle = {
     position: "absolute",
     top: "50%",
@@ -21,18 +33,26 @@ const DynamiceFormCreate: FC<props> = ({ formFieldDetails, addNewDetails }) => {
     p: 4,
   };
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    addNewDetails(data);
-  };
+  const formik = useFormik({
+    initialValues: supplierAddFormInitialValues,
+    enableReinitialize: true,
+    validationSchema: supplierValidationSchema,
+    onSubmit: (values) => {
+      addNewDetails(values);
+    },
+  });
 
   return (
     <div>
-      <Modal open={true}>
+      <Modal open={modalOpen}>
         <Box sx={modalStyle}>
-          <div>
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="absolute right-0 top-0 ">
+            <button onClick={() => setModalOpen(!modalOpen)}>
+              <CloseIcon />
+            </button>
+          </div>
+          <div className="mt-3">
+            <form onSubmit={formik.handleSubmit} className="space-y-4">
               {formFieldDetails?.map((field: any) => {
                 switch (field.type) {
                   case "text":
@@ -43,6 +63,7 @@ const DynamiceFormCreate: FC<props> = ({ formFieldDetails, addNewDetails }) => {
                         label={field.label}
                         type={field.type}
                         fieldProps={field}
+                        formik={formik}
                       />
                     );
                   case "select":
@@ -52,6 +73,7 @@ const DynamiceFormCreate: FC<props> = ({ formFieldDetails, addNewDetails }) => {
                         label={field.label}
                         options={field.options}
                         fieldProps={field}
+                        formik={formik}
                       />
                     );
                   case "file":

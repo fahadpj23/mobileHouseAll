@@ -12,12 +12,12 @@ const AddButton: FC<props> = ({ formFieldDetails, addNewDetails }) => {
       <div className="bg-green-600 text-white p-2 rounded-md font-semibold">
         <button onClick={() => setModalOpen(!modalOpen)}>Add+</button>
       </div>
-      {modalOpen && (
-        <DynamiceFormCreate
-          formFieldDetails={formFieldDetails}
-          addNewDetails={addNewDetails}
-        />
-      )}
+      <DynamiceFormCreate
+        formFieldDetails={formFieldDetails}
+        addNewDetails={addNewDetails}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+      />
     </>
   );
 };

@@ -17,13 +17,9 @@ interface props {
   label: string;
   options?: optionsValues[];
   fieldProps?: any;
+  formik?: any;
 }
-const CustomSelectBox: FC<props> = ({ label, options, fieldProps }) => {
-  const [selectedItem, setSelectedIem] = useState("");
-  const handleChange = (event: SelectChangeEvent) => {
-    setSelectedIem(event.target.value as string);
-  };
-
+const CustomSelectBox: FC<props> = ({ label, options, fieldProps, formik }) => {
   return (
     <div>
       <FormControl fullWidth>
@@ -32,9 +28,9 @@ const CustomSelectBox: FC<props> = ({ label, options, fieldProps }) => {
           labelId="demo-simple-select-label"
           id={fieldProps.id}
           name={fieldProps.id}
-          value={selectedItem}
+          value={formik[label]}
           label={label}
-          onChange={handleChange}
+          onChange={formik.handleChange}
         >
           {options?.map((option: optionsValues) => (
             <MenuItem key={option?.id} value={option?.id}>

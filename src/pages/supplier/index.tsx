@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import { useAppDispatch, RootState } from "store";
 
 import DetailsPage from "components/commonComponents/detailsPage";
-import SuppilerTableHead from "constants/supplierTableHead";
+import SuppilerTableHead from "constants/supplierConstants/supplierTableHead";
+import SupplierAddForm from "constants/supplierConstants/suppilerAddForm";
 
 const Supplier = () => {
   const appDispatch = useAppDispatch();
@@ -21,33 +22,10 @@ const Supplier = () => {
     appDispatch(addSupplier(data));
   };
 
-  const formFieldDetails = [
-    {
-      id: "name",
-      label: "name",
-      type: "text",
-      allowNull: true,
-    },
-    {
-      id: "address",
-      label: "Address",
-      type: "text",
-      allowNull: false,
-      multiline: true,
-    },
-    {
-      id: "phone",
-      label: "Phone Number",
-      type: "number",
-      allowNull: false,
-    },
-  ];
-
-  console.log(entityList);
   return (
     <div>
       <DetailsPage
-        formFieldDetails={formFieldDetails}
+        formFieldDetails={SupplierAddForm}
         addNewDetails={supplierAdd}
         tableHead={SuppilerTableHead}
         tableData={entityList}
