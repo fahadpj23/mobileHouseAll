@@ -8,17 +8,18 @@ interface props {
 }
 const CustomTextField: FC<props> = (props) => {
   const { label, type, fieldProps } = props;
+  console.log(type);
   return (
     <div>
       <div>
         <TextField
           fullWidth
-          name={label}
-          id={label}
+          name={fieldProps.id}
+          id={fieldProps.id}
           label={label}
           variant="outlined"
-          type={type}
-          multiline
+          type="number"
+          multiline={type == "number" ? false : true}
           rows={fieldProps.multiline ? 4 : 1}
         />
       </div>

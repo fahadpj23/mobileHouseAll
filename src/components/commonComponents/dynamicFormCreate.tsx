@@ -39,6 +39,7 @@ const DynamiceFormCreate: FC<props> = ({ formFieldDetails, addNewDetails }) => {
                   case "number":
                     return (
                       <CustomTextField
+                        key={field?.id}
                         label={field.label}
                         type={field.type}
                         fieldProps={field}
@@ -47,12 +48,14 @@ const DynamiceFormCreate: FC<props> = ({ formFieldDetails, addNewDetails }) => {
                   case "select":
                     return (
                       <CustomSelectBox
+                        key={field?.id}
                         label={field.label}
                         options={field.options}
+                        fieldProps={field}
                       />
                     );
                   case "file":
-                    return <CustomFileUpload />;
+                    return <CustomFileUpload key={field?.id} />;
                 }
               })}
               <div className="w-full flex justify-end">

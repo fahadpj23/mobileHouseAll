@@ -16,8 +16,9 @@ interface optionsValues {
 interface props {
   label: string;
   options?: optionsValues[];
+  fieldProps?: any;
 }
-const CustomSelectBox: FC<props> = ({ label, options }) => {
+const CustomSelectBox: FC<props> = ({ label, options, fieldProps }) => {
   const [selectedItem, setSelectedIem] = useState("");
   const handleChange = (event: SelectChangeEvent) => {
     setSelectedIem(event.target.value as string);
@@ -29,7 +30,8 @@ const CustomSelectBox: FC<props> = ({ label, options }) => {
         <InputLabel id="select-label">{label}</InputLabel>
         <Select
           labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          id={fieldProps.id}
+          name={fieldProps.id}
           value={selectedItem}
           label={label}
           onChange={handleChange}

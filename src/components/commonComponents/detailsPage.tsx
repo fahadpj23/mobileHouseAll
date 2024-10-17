@@ -7,29 +7,15 @@ import PurchaseTableHead from "constants/purchaseTableHead";
 interface props {
   formFieldDetails?: any;
   addNewDetails?: any;
+  tableHead?: any;
+  tableData?: any;
 }
-const DetailsPage: FC<props> = ({ formFieldDetails, addNewDetails }) => {
-  const tableData = [
-    {
-      invoiceNo: 12,
-      invoiceDate: "12-05-2024",
-      supplier: "ABC",
-      amount: 10000,
-    },
-    {
-      invoiceNo: 13,
-      invoiceDate: "12-05-2024",
-      supplier: "ABC",
-      amount: 10000,
-    },
-    {
-      invoiceNo: 14,
-      invoiceDate: "12-05-2024",
-      supplier: "ABC",
-      amount: 10000,
-    },
-  ];
-
+const DetailsPage: FC<props> = ({
+  formFieldDetails,
+  addNewDetails,
+  tableHead,
+  tableData,
+}) => {
   return (
     <div>
       <div className="w-full flex justify-end space-x-2 items-center">
@@ -41,7 +27,7 @@ const DetailsPage: FC<props> = ({ formFieldDetails, addNewDetails }) => {
           addNewDetails={addNewDetails}
         />
       </div>
-      <ListTable tableHead={PurchaseTableHead} tableData={tableData} />
+      <ListTable tableHead={tableHead} tableData={tableData} />
     </div>
   );
 };
