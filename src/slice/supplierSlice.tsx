@@ -1,4 +1,9 @@
-import { createAsyncThunk, createSlice, isFulfilled } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  isFulfilled,
+  isPending,
+} from "@reduxjs/toolkit";
 
 import ReducerInitialState from "constants/reducerInitialState";
 
@@ -43,6 +48,7 @@ export const supplierSlice = createSlice({
     });
     builder.addCase(fetchSupplier.rejected, (state) => {
       state.loading = false;
+      state.errorMessage = "something went wrong";
     });
     builder.addCase(addSupplier.fulfilled, (state) => {
       state.loading = false;
@@ -52,8 +58,10 @@ export const supplierSlice = createSlice({
       .addCase(addSupplier.rejected, (state) => {
         state.loading = false;
       })
-      .addMatcher(isFulfilled(fetchSupplier, addSupplier), (state, action) => {
+      .addMatcher(isPending(fetchSupplier, addSupplier), (state, action) => {
         state.loading = true;
+        state.successMessage = "";
+        state.errorMessage = "";
       });
   },
 });

@@ -15,12 +15,14 @@ const AddButton: FC<props> = ({ formFieldDetails, addNewDetails }) => {
       <div className="bg-green-600 text-white p-2 rounded-md font-semibold">
         <button onClick={billingContext?.handleFormModal}>Add+</button>
       </div>
-      <DynamiceFormCreate
-        formFieldDetails={formFieldDetails}
-        addNewDetails={addNewDetails}
-        modalOpen={billingContext?.modalOpen}
-        handleFormModal={billingContext?.handleFormModal}
-      />
+      {billingContext?.modalOpen && (
+        <DynamiceFormCreate
+          formFieldDetails={formFieldDetails}
+          addNewDetails={addNewDetails}
+          modalOpen={billingContext?.modalOpen}
+          handleFormModal={billingContext?.handleFormModal}
+        />
+      )}
     </>
   );
 };
