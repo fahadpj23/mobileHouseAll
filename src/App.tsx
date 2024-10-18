@@ -1,12 +1,16 @@
 import "./App.css";
 import PageRoutes from "./pageRoutes";
-import { Provider } from "react-redux";
-import store from "./store";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import BillingContextProvider from "context/billingContext";
 
 function App() {
   return (
     <div>
-      <PageRoutes />
+      <BillingContextProvider>
+        <PageRoutes />
+        <ToastContainer />
+      </BillingContextProvider>
     </div>
   );
 }

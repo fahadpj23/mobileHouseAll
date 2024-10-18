@@ -12,15 +12,15 @@ import supplierValidationSchema from "constants/supplierConstants/supplierFormVa
 interface props {
   formFieldDetails: any;
   addNewDetails?: any;
-  modalOpen: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  modalOpen: boolean | undefined;
+  handleFormModal?: () => void;
 }
 
 const DynamiceFormCreate: FC<props> = ({
   formFieldDetails,
   addNewDetails,
   modalOpen,
-  setModalOpen,
+  handleFormModal,
 }) => {
   const modalStyle = {
     position: "absolute",
@@ -44,10 +44,10 @@ const DynamiceFormCreate: FC<props> = ({
 
   return (
     <div>
-      <Modal open={modalOpen}>
+      <Modal open={modalOpen ?? false}>
         <Box sx={modalStyle}>
           <div className="absolute right-0 top-0 ">
-            <button onClick={() => setModalOpen(!modalOpen)}>
+            <button onClick={handleFormModal}>
               <CloseIcon />
             </button>
           </div>

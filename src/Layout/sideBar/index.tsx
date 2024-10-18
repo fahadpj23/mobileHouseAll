@@ -34,7 +34,10 @@ const SideBar: FC<props> = ({ sideBarOpen, setSideBarOpen }) => {
       <div className="flex flex-col justify-center mt-10 space-y-2">
         {SideBarItems.map((sidebar: sideBarModel) => {
           return (
-            <div key={sidebar?.id} className=" w-full text-textBlackColor  hover:text-textBlackColor hover:font-bold p-2 ">
+            <div
+              key={sidebar?.id}
+              className=" w-full text-textBlackColor  hover:text-textBlackColor hover:font-bold p-2 "
+            >
               <Link
                 className={`flex items-center  ${
                   sideBarOpen

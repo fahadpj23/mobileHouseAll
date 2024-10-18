@@ -46,6 +46,7 @@ export const supplierSlice = createSlice({
     });
     builder.addCase(addSupplier.fulfilled, (state) => {
       state.loading = false;
+      state.successMessage = "Supplier Added successfully";
     });
     builder
       .addCase(addSupplier.rejected, (state) => {

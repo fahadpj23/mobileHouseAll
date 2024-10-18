@@ -24,7 +24,8 @@
       "@components/*": ["./components/*"],
       "@asset/*": ["./asset/*"],
       "@utils/*": ["./utils/*"],
-      "@slice/*": ["./slice/*"]
+      "@slice/*": ["./slice/*"],
+      "@context/*": ["./context/*"]
     }
   },
   "include": ["src", "public"]
