@@ -12,7 +12,6 @@ const BillingContextProvider: FC<any> = (props) => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleFormModal = () => {
-    console.log("Df");
     setModalOpen(!modalOpen);
   };
 

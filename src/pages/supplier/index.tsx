@@ -13,14 +13,14 @@ import { BillingContext } from "context/billingContext";
 const Supplier = () => {
   const appDispatch = useAppDispatch();
   const billingContext = useContext(BillingContext);
-  const { loading, entityList, successMessage } = useSelector(
+  const { loading, entityList, successMessage, error } = useSelector(
     (state: RootState) => state.supplier
   );
 
   const supplierAdd = (data: any) => {
     appDispatch(addSupplier(data));
   };
-
+  console.log(error?.response?.data?.message);
   useEffect(() => {
     appDispatch(fetchSupplier());
   }, [appDispatch]);
@@ -31,7 +31,13 @@ const Supplier = () => {
       toastMessage(successMessage);
       appDispatch(fetchSupplier());
     }
-  }, [successMessage]);
+  }, [successMessage, error]);
+
+  useEffect(() => {
+    if (error?.response) {
+      toastMessage(error?.response?.data?.message);
+    }
+  }, [error]);
 
   return (
     <div>

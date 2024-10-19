@@ -10,6 +10,7 @@ import ReducerInitialState from "constants/reducerInitialState";
 import axios from "axios";
 const initialState = {
   ...ReducerInitialState,
+  error: {} as any,
 };
 export const fetchSupplier = createAsyncThunk(
   "supplier/fetchValue",
@@ -21,15 +22,35 @@ export const fetchSupplier = createAsyncThunk(
   }
 );
 
+// export const addSupplier = createAsyncThunk(
+//   "supplier/addSupplier",
+//   async (data: any, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.post(
+//         "http://localhost:8080/api/supplier/addSupplier",
+//         data
+//       );
+//       return response.data;
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+// );
+
 export const addSupplier = createAsyncThunk(
-  "supplier/addSupplier",
-  async (data: any) => {
-    const supplierDetails = await axios.post(
-      "http://localhost:8080/api/supplier/addSupplier",
-      data,
-      { headers: { "Content-Type": "application/json" } }
-    );
-    return supplierDetails;
+  "user/addUser",
+  async (data: any, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/supplier/addSupplier",
+        data
+      );
+      return response.data;
+    } catch (error) {
+      if (error) {
+        return rejectWithValue(error);
+      }
+    }
   }
 );
 
@@ -55,8 +76,9 @@ export const supplierSlice = createSlice({
       state.successMessage = "Supplier Added successfully";
     });
     builder
-      .addCase(addSupplier.rejected, (state) => {
+      .addCase(addSupplier.rejected, (state, action) => {
         state.loading = false;
+        state.error = action?.payload ?? {};
       })
       .addMatcher(isPending(fetchSupplier, addSupplier), (state, action) => {
         state.loading = true;
