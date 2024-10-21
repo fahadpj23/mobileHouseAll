@@ -1,36 +1,11 @@
 import DetailsPage from "components/commonComponents/detailsPage";
 
-const Purchase = () => {
-  const formFieldDetails = [
-    {
-      label: "name",
-      type: "input",
-      allowNull: true,
-    },
-    {
-      label: "hsn",
-      type: "input",
-      allowNull: false,
-    },
-    {
-      label: "category",
-      type: "select",
-      options: [
-        {
-          id: 1,
-          label: "phone",
-        },
-        {
-          id: 2,
-          label: "accessories",
-        },
-      ],
-    },
-  ];
+import CONSTANTVALUES from "constants/constantValues";
 
+const Purchase = () => {
   return (
     <div className="">
-      <DetailsPage formFieldDetails={formFieldDetails} />
+      <DetailsPage pageName={CONSTANTVALUES.PURCHASE} />
     </div>
   );
 };

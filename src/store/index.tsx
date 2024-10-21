@@ -1,10 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import supplierReducer from "slice/supplierSlice";
 import { useDispatch } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+
+import supplierReducer from "slice/supplierSlice";
+import crudReducer from "slice/crudSlice";
 
 const store = configureStore({
   reducer: {
     supplier: supplierReducer,
+    crud: crudReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

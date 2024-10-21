@@ -10,6 +10,8 @@ import SupplierAddForm from "constants/supplierConstants/suppilerAddForm";
 import toastMessage from "utils/toastMessage";
 import { BillingContext } from "context/billingContext";
 
+import CONSTANTVALUES from "constants/constantValues";
+
 const Supplier = () => {
   const appDispatch = useAppDispatch();
   const billingContext = useContext(BillingContext);
@@ -20,7 +22,7 @@ const Supplier = () => {
   const supplierAdd = (data: any) => {
     appDispatch(addSupplier(data));
   };
-  console.log(error?.response?.data?.message);
+
   useEffect(() => {
     appDispatch(fetchSupplier());
   }, [appDispatch]);
@@ -28,24 +30,22 @@ const Supplier = () => {
   useEffect(() => {
     if (successMessage) {
       billingContext?.handleFormModal();
-      toastMessage(successMessage);
+      toastMessage("success", successMessage);
       appDispatch(fetchSupplier());
     }
   }, [successMessage, error]);
 
   useEffect(() => {
     if (error?.response) {
-      toastMessage(error?.response?.data?.message);
+      toastMessage("warning", error?.response?.data?.message);
     }
   }, [error]);
 
   return (
     <div>
       <DetailsPage
-        formFieldDetails={SupplierAddForm}
         addNewDetails={supplierAdd}
-        tableHead={SuppilerTableHead}
-        tableData={entityList}
+        pageName={CONSTANTVALUES.SUPPLIER}
       />
     </div>
   );

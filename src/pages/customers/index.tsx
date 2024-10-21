@@ -1,9 +1,11 @@
 import DetailsPage from "components/commonComponents/detailsPage";
 
+import CONSTANTVALUES from "constants/constantValues";
+
 const Customers = () => {
   return (
     <div>
-      <DetailsPage />
+      <DetailsPage pageName={CONSTANTVALUES.CUSTOMERS} />
     </div>
   );
 };

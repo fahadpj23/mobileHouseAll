@@ -3,12 +3,13 @@ import { useContext } from "react";
 
 import DynamiceFormCreate from "./dynamicFormCreate";
 import { BillingContext } from "context/billingContext";
+import { getAddFormDetails } from "utils/getAddFormDetails";
 
 interface props {
-  formFieldDetails: any;
   addNewDetails: any;
+  pageName: string;
 }
-const AddButton: FC<props> = ({ formFieldDetails, addNewDetails }) => {
+const AddButton: FC<props> = ({ addNewDetails, pageName }) => {
   const billingContext = useContext(BillingContext);
   return (
     <>
@@ -17,7 +18,8 @@ const AddButton: FC<props> = ({ formFieldDetails, addNewDetails }) => {
       </div>
       {billingContext?.modalOpen && (
         <DynamiceFormCreate
-          formFieldDetails={formFieldDetails}
+          pageName={pageName}
+          formFieldDetails={getAddFormDetails(pageName)}
           addNewDetails={addNewDetails}
           modalOpen={billingContext?.modalOpen}
           handleFormModal={billingContext?.handleFormModal}

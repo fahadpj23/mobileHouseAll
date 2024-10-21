@@ -10,6 +10,7 @@ import supplierAddFormInitialValues from "constants/supplierConstants/supplierAd
 import supplierValidationSchema from "constants/supplierConstants/supplierFormValidation";
 
 interface props {
+  pageName: string;
   formFieldDetails: any;
   addNewDetails?: any;
   modalOpen: boolean | undefined;
@@ -17,6 +18,7 @@ interface props {
 }
 
 const DynamiceFormCreate: FC<props> = ({
+  pageName,
   formFieldDetails,
   addNewDetails,
   modalOpen,

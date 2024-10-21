@@ -3,31 +3,40 @@ import AddButton from "./addButton";
 import SearchBar from "./searchBar";
 import ListTable from "./table";
 import PurchaseTableHead from "constants/purchaseTableHead";
+import { useContext, useEffect } from "react";
+
+import { useAppDispatch, RootState } from "store";
+import { useSelector } from "react-redux";
+import { getTableHead } from "utils/getTableHead";
+import { getEntities } from "slice/crudSlice";
 
 interface props {
-  formFieldDetails?: any;
   addNewDetails?: any;
-  tableHead?: any;
-  tableData?: any;
+  pageName: string;
 }
-const DetailsPage: FC<props> = ({
-  formFieldDetails,
-  addNewDetails,
-  tableHead,
-  tableData,
-}) => {
+
+const DetailsPage: FC<props> = ({ addNewDetails, pageName }) => {
+  // const state = useSelector(
+  //   (state: RootState) => state[reducerName as keyof RootState]
+  // );
+
+  const { entityList } = useSelector((state: RootState) => state.crud);
+
+  const tableHeads = getTableHead(pageName);
+
+  useEffect(() => {
+    getEntities(pageName);
+  }, []);
+
   return (
     <div>
       <div className="w-full flex justify-end space-x-2 items-center">
         <div className="p-2 flex bg-whiteBackground rounded-lg my-2 w-56 justify-end  ">
           <SearchBar />
         </div>
-        <AddButton
-          formFieldDetails={formFieldDetails}
-          addNewDetails={addNewDetails}
-        />
+        <AddButton addNewDetails={addNewDetails} pageName={pageName} />
       </div>
-      <ListTable tableHead={tableHead} tableData={tableData} />
+      <ListTable tableHead={getTableHead(pageName)} tableData={entityList} />
     </div>
   );
 };

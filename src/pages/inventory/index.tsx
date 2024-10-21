@@ -1,5 +1,7 @@
 import DetailsPage from "components/commonComponents/detailsPage";
 
+import CONSTANTVALUES from "constants/constantValues";
+
 const Inventory = () => {
   const formFieldDetails = [
     {
@@ -29,7 +31,7 @@ const Inventory = () => {
   ];
   return (
     <div className="">
-      <DetailsPage formFieldDetails={formFieldDetails} />
+      <DetailsPage pageName={CONSTANTVALUES.INVENTORY} />
     </div>
   );
 };

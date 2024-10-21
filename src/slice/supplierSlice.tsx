@@ -22,21 +22,6 @@ export const fetchSupplier = createAsyncThunk(
   }
 );
 
-// export const addSupplier = createAsyncThunk(
-//   "supplier/addSupplier",
-//   async (data: any, { rejectWithValue }) => {
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:8080/api/supplier/addSupplier",
-//         data
-//       );
-//       return response.data;
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-// );
-
 export const addSupplier = createAsyncThunk(
   "user/addUser",
   async (data: any, { rejectWithValue }) => {
