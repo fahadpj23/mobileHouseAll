@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Box, Modal } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import CloseIcon from "@mui/icons-material/Close";
@@ -8,21 +8,21 @@ import CustomTextField from "./customTextField";
 import CustomFileUpload from "./customFileUpload";
 import supplierAddFormInitialValues from "constants/supplierConstants/supplierAddFormInitialValues";
 import supplierValidationSchema from "constants/supplierConstants/supplierFormValidation";
+import { addEntity, getEntities } from "slice/crudSlice";
+import { RootState, useAppDispatch } from "store";
+import { useSelector } from "react-redux";
+import toastMessage from "utils/toastMessage";
 
 interface props {
   pageName: string;
   formFieldDetails: any;
-  addNewDetails?: any;
-  modalOpen: boolean | undefined;
-  handleFormModal?: () => void;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DynamiceFormCreate: FC<props> = ({
   pageName,
   formFieldDetails,
-  addNewDetails,
-  modalOpen,
-  handleFormModal,
+  setModalOpen,
 }) => {
   const modalStyle = {
     position: "absolute",
@@ -34,22 +34,35 @@ const DynamiceFormCreate: FC<props> = ({
     boxShadow: 24,
     p: 4,
   };
+  const appDispatch = useAppDispatch();
+
+  const { successMessage, errorMessage } = useSelector(
+    (state: RootState) => state.crud
+  );
+
+  useEffect(() => {
+    if (successMessage) {
+      toastMessage("success", successMessage);
+      appDispatch(getEntities(pageName));
+      setModalOpen(false);
+    }
+  }, [successMessage]);
 
   const formik = useFormik({
     initialValues: supplierAddFormInitialValues,
     enableReinitialize: true,
     validationSchema: supplierValidationSchema,
-    onSubmit: (values) => {
-      addNewDetails(values);
+    onSubmit: (data) => {
+      appDispatch(addEntity({ pageName, data }));
     },
   });
 
   return (
     <div>
-      <Modal open={modalOpen ?? false}>
+      <Modal open={true}>
         <Box sx={modalStyle}>
           <div className="absolute right-0 top-0 ">
-            <button onClick={handleFormModal}>
+            <button onClick={() => setModalOpen(false)}>
               <CloseIcon />
             </button>
           </div>

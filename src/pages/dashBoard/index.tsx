@@ -39,7 +39,11 @@ const DashBoard = () => {
         linkSrc={link}
       />
       <div className="h-[25vh]">
-        <ListTable tableHead={TableHeadRow} tableData={TableDataRow} />
+        <ListTable
+          tableHead={TableHeadRow}
+          tableData={TableDataRow}
+          pageName="dashBoard"
+        />
       </div>
     </div>
   );

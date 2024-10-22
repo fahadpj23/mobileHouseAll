@@ -19,13 +19,13 @@ const DetailsPage: FC<props> = ({ addNewDetails, pageName }) => {
   // const state = useSelector(
   //   (state: RootState) => state[reducerName as keyof RootState]
   // );
-
+  const appDispatch = useAppDispatch();
   const { entityList } = useSelector((state: RootState) => state.crud);
 
   const tableHeads = getTableHead(pageName);
 
   useEffect(() => {
-    getEntities(pageName);
+    appDispatch(getEntities(pageName));
   }, []);
 
   return (
@@ -36,7 +36,11 @@ const DetailsPage: FC<props> = ({ addNewDetails, pageName }) => {
         </div>
         <AddButton addNewDetails={addNewDetails} pageName={pageName} />
       </div>
-      <ListTable tableHead={getTableHead(pageName)} tableData={entityList} />
+      <ListTable
+        tableHead={getTableHead(pageName)}
+        tableData={entityList}
+        pageName={pageName}
+      />
     </div>
   );
 };

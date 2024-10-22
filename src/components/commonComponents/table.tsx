@@ -7,6 +7,8 @@ import "reactjs-popup/dist/index.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { deleteEntity } from "slice/crudSlice";
+import { useAppDispatch } from "store";
 
 interface tableHeadValue {
   key: string;
@@ -15,8 +17,10 @@ interface tableHeadValue {
 interface props {
   tableHead: tableHeadValue[];
   tableData: any;
+  pageName: string;
 }
-const ListTable: FC<props> = ({ tableHead, tableData }) => {
+const ListTable: FC<props> = ({ tableHead, tableData, pageName }) => {
+  const appDispatch = useAppDispatch();
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
@@ -27,6 +31,11 @@ const ListTable: FC<props> = ({ tableHead, tableData }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleDelete = (deleteId: number) => {
+    console.log("FD");
+    appDispatch(deleteEntity({ pageName, deleteId }));
   };
 
   const open = Boolean(anchorEl);
@@ -70,7 +79,10 @@ const ListTable: FC<props> = ({ tableHead, tableData }) => {
                       <EditIcon sx={{ fontSize: 16 }} />
                       <h1 className="text-sm">edit</h1>
                     </button>
-                    <button className="flex space-x-1 items-center">
+                    <button
+                      onClick={() => handleDelete(tableData?.id)}
+                      className="flex space-x-1 items-center"
+                    >
                       <DeleteIcon sx={{ fontSize: 16 }} />
                       <h1 className="text-sm">delete</h1>
                     </button>

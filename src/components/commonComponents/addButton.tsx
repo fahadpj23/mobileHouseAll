@@ -11,18 +11,17 @@ interface props {
 }
 const AddButton: FC<props> = ({ addNewDetails, pageName }) => {
   const billingContext = useContext(BillingContext);
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
       <div className="bg-green-600 text-white p-2 rounded-md font-semibold">
-        <button onClick={billingContext?.handleFormModal}>Add+</button>
+        <button onClick={() => setModalOpen(!modalOpen)}>Add+</button>
       </div>
-      {billingContext?.modalOpen && (
+      {modalOpen && (
         <DynamiceFormCreate
           pageName={pageName}
           formFieldDetails={getAddFormDetails(pageName)}
-          addNewDetails={addNewDetails}
-          modalOpen={billingContext?.modalOpen}
-          handleFormModal={billingContext?.handleFormModal}
+          setModalOpen={setModalOpen}
         />
       )}
     </>
