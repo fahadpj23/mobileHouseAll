@@ -22,10 +22,8 @@ const DetailsPage: FC<props> = ({ addNewDetails, pageName }) => {
   const appDispatch = useAppDispatch();
   const { entityList } = useSelector((state: RootState) => state.crud);
 
-  const tableHeads = getTableHead(pageName);
-
   useEffect(() => {
-    appDispatch(getEntities(pageName));
+    appDispatch(getEntities({ pageName }));
   }, []);
 
   return (
@@ -34,7 +32,7 @@ const DetailsPage: FC<props> = ({ addNewDetails, pageName }) => {
         <div className="p-2 flex bg-whiteBackground rounded-lg my-2 w-56 justify-end  ">
           <SearchBar />
         </div>
-        <AddButton addNewDetails={addNewDetails} pageName={pageName} />
+        <AddButton pageName={pageName} />
       </div>
       <ListTable
         tableHead={getTableHead(pageName)}

@@ -6,22 +6,22 @@ import { BillingContext } from "context/billingContext";
 import { getAddFormDetails } from "utils/getAddFormDetails";
 
 interface props {
-  addNewDetails: any;
   pageName: string;
 }
-const AddButton: FC<props> = ({ addNewDetails, pageName }) => {
+const AddButton: FC<props> = ({ pageName }) => {
   const billingContext = useContext(BillingContext);
-  const [modalOpen, setModalOpen] = useState(false);
+  console.log(billingContext?.modalOpen);
   return (
     <>
       <div className="bg-green-600 text-white p-2 rounded-md font-semibold">
-        <button onClick={() => setModalOpen(!modalOpen)}>Add+</button>
+        <button onClick={() => billingContext?.handleFormModal()}>Add+</button>
       </div>
-      {modalOpen && (
+      {billingContext?.modalOpen && (
         <DynamiceFormCreate
           pageName={pageName}
           formFieldDetails={getAddFormDetails(pageName)}
-          setModalOpen={setModalOpen}
+          handleModal={billingContext.handleFormModal}
+          modalOpen={billingContext?.modalOpen}
         />
       )}
     </>

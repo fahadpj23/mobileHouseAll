@@ -3,6 +3,7 @@ import {
   createSlice,
   isFulfilled,
   isPending,
+  isRejected,
 } from "@reduxjs/toolkit";
 
 import ReducerInitialState from "constants/reducerInitialState";
@@ -14,13 +15,36 @@ const initialState = {
   ...ReducerInitialState,
   error: {} as any,
 };
-export const getEntities = createAsyncThunk(
-  "supplier/fetchValue",
-  async (pageName: string) => {
+
+export const getEntities = createAsyncThunk<
+  any,
+  { pageName: string },
+  { rejectValue: string }
+>("data/fetchValue", async ({ pageName }, { rejectWithValue }) => {
+  try {
     const response = axiosApi.get(`${pageName}/getEntities`);
     return response;
+  } catch (error) {
+    if (error) {
+      return rejectWithValue("failed");
+    }
   }
-);
+});
+
+export const getEntityById = createAsyncThunk<
+  any,
+  { pageName: string; id: number },
+  { rejectValue: string }
+>("data/fetchById", async ({ pageName, id }, { rejectWithValue }) => {
+  try {
+    const response = axiosApi.get(`${pageName}/${id}`);
+    return response;
+  } catch (error) {
+    if (error) {
+      return rejectWithValue("failed");
+    }
+  }
+});
 
 export const addEntity = createAsyncThunk<
   any,
@@ -69,18 +93,25 @@ export const crudSlice = createSlice({
       state.loading = false;
       state.successMessage = "added successFully";
     });
-    builder.addCase(deleteEntity.fulfilled, (state, action) => {
-      state.loading = false;
-      state.successMessage = "supplier deleted successFully";
-    });
     builder
-      .addCase(getEntities.rejected, (state) => {
+      .addCase(deleteEntity.fulfilled, (state, action) => {
         state.loading = false;
-        state.errorMessage = "something went wrong";
+        state.successMessage = "supplier deleted successFully";
       })
+      .addCase(getEntityById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.entity = action.payload.data.data;
+      })
+      .addMatcher(
+        isRejected(getEntities, addEntity, deleteEntity, getEntityById),
+        (state, action) => {
+          state.loading = false;
+          state.errorMessage = "something went wrong";
+        }
+      )
 
       .addMatcher(
-        isPending(getEntities, addEntity, deleteEntity),
+        isPending(getEntities, addEntity, deleteEntity, getEntityById),
         (state, action) => {
           state.loading = true;
           state.successMessage = "";

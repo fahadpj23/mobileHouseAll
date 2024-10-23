@@ -8,21 +8,31 @@ import CustomTextField from "./customTextField";
 import CustomFileUpload from "./customFileUpload";
 import supplierAddFormInitialValues from "constants/supplierConstants/supplierAddFormInitialValues";
 import supplierValidationSchema from "constants/supplierConstants/supplierFormValidation";
-import { addEntity, getEntities } from "slice/crudSlice";
+import { addEntity, getEntities, getEntityById } from "slice/crudSlice";
 import { RootState, useAppDispatch } from "store";
 import { useSelector } from "react-redux";
 import toastMessage from "utils/toastMessage";
 
 interface props {
+  editId?: number;
   pageName: string;
   formFieldDetails: any;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleModal: () => void;
+  modalOpen: boolean;
+}
+
+interface check {
+  name: string;
+  phone: number;
+  address: string;
 }
 
 const DynamiceFormCreate: FC<props> = ({
+  editId,
   pageName,
   formFieldDetails,
-  setModalOpen,
+  handleModal,
+  modalOpen,
 }) => {
   const modalStyle = {
     position: "absolute",
@@ -36,17 +46,9 @@ const DynamiceFormCreate: FC<props> = ({
   };
   const appDispatch = useAppDispatch();
 
-  const { successMessage, errorMessage } = useSelector(
+  const { successMessage, errorMessage, entity } = useSelector(
     (state: RootState) => state.crud
   );
-
-  useEffect(() => {
-    if (successMessage) {
-      toastMessage("success", successMessage);
-      appDispatch(getEntities(pageName));
-      setModalOpen(false);
-    }
-  }, [successMessage]);
 
   const formik = useFormik({
     initialValues: supplierAddFormInitialValues,
@@ -57,12 +59,34 @@ const DynamiceFormCreate: FC<props> = ({
     },
   });
 
+  useEffect(() => {
+    editId && appDispatch(getEntityById({ pageName, id: editId }));
+  }, [editId]);
+
+  useEffect(() => {
+    if (successMessage) {
+      toastMessage("success", successMessage);
+      appDispatch(getEntities({ pageName }));
+      handleModal();
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (editId && entity) {
+      console.log(entity);
+      formFieldDetails?.map((field: any) => {
+        // @ts-ignore: Unreachable code error
+        formik.setFieldValue(field.id, entity[field.id]);
+      });
+    }
+  }, [entity]);
+
   return (
     <div>
-      <Modal open={true}>
+      <Modal open={modalOpen}>
         <Box sx={modalStyle}>
           <div className="absolute right-0 top-0 ">
-            <button onClick={() => setModalOpen(false)}>
+            <button onClick={() => handleModal()}>
               <CloseIcon />
             </button>
           </div>

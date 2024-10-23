@@ -14,6 +14,7 @@ const CustomTextField: FC<props> = (props) => {
       <div>
         <TextField
           fullWidth
+          value={formik.values[fieldProps.id]}
           onChange={formik.handleChange}
           name={fieldProps.id}
           id={fieldProps.id}

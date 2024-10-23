@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext, useState } from "react";
 import React from "react";
 
 import Popup from "reactjs-popup";
@@ -7,8 +7,11 @@ import "reactjs-popup/dist/index.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { deleteEntity } from "slice/crudSlice";
+import { deleteEntity, getEntityById } from "slice/crudSlice";
 import { useAppDispatch } from "store";
+import { BillingContext } from "context/billingContext";
+import DynamiceFormCreate from "./dynamicFormCreate";
+import { getAddFormDetails } from "utils/getAddFormDetails";
 
 interface tableHeadValue {
   key: string;
@@ -21,23 +24,19 @@ interface props {
 }
 const ListTable: FC<props> = ({ tableHead, tableData, pageName }) => {
   const appDispatch = useAppDispatch();
+  const billingContext = useContext(BillingContext);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
+  const [editId, setEditId] = useState<number>();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleDelete = (deleteId: number) => {
-    console.log("FD");
+  const handleDelete = (deleteId: number) =>
     appDispatch(deleteEntity({ pageName, deleteId }));
-  };
 
+  const handleEdit = (id: number) => {
+    billingContext?.handleFormModal();
+    setEditId(id);
+  };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
@@ -75,7 +74,10 @@ const ListTable: FC<props> = ({ tableHead, tableData, pageName }) => {
                   position="bottom right"
                 >
                   <div className="flex flex-col space-y-3">
-                    <button className="flex space-x-1 items-center">
+                    <button
+                      onClick={() => handleEdit(tableData?.id)}
+                      className="flex space-x-1 items-center"
+                    >
                       <EditIcon sx={{ fontSize: 16 }} />
                       <h1 className="text-sm">edit</h1>
                     </button>
@@ -93,6 +95,15 @@ const ListTable: FC<props> = ({ tableHead, tableData, pageName }) => {
           ))}
         </tbody>
       </table>
+      {editId && billingContext?.modalOpen && (
+        <DynamiceFormCreate
+          editId={editId}
+          pageName={pageName}
+          formFieldDetails={getAddFormDetails(pageName)}
+          handleModal={billingContext.handleFormModal}
+          modalOpen={billingContext?.modalOpen}
+        />
+      )}
     </div>
   );
 };
