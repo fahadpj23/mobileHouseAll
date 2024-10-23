@@ -8,7 +8,8 @@ import {
 import ReducerInitialState from "constants/reducerInitialState";
 
 import axios from "axios";
-import { error } from "console";
+import { axiosApi } from "axiosInstance";
+
 const initialState = {
   ...ReducerInitialState,
   error: {} as any,
@@ -16,9 +17,7 @@ const initialState = {
 export const getEntities = createAsyncThunk(
   "supplier/fetchValue",
   async (pageName: string) => {
-    const response = axios.get(
-      `http://localhost:8080/api/${pageName}/getEntities`
-    );
+    const response = axiosApi.get(`${pageName}/getEntities`);
     return response;
   }
 );
@@ -29,10 +28,7 @@ export const addEntity = createAsyncThunk<
   { rejectValue: string }
 >("data/fetchData", async ({ pageName, data }, { rejectWithValue }) => {
   try {
-    const response = await axios.post(
-      `http://localhost:8080/api/${pageName}/addEntity`,
-      data
-    );
+    const response = await axiosApi.post(`${pageName}/addEntity`, data);
     return response.data;
   } catch (error) {
     if (error) {
@@ -47,9 +43,7 @@ export const deleteEntity = createAsyncThunk<
   { rejectValue: string }
 >("data/deleteEntity", async ({ pageName, deleteId }, { rejectWithValue }) => {
   try {
-    const response = await axios.delete(
-      `http://localhost:8080/api/${pageName}/${deleteId}`
-    );
+    const response = await axiosApi.delete(`${pageName}/${deleteId}`);
     return response;
   } catch (error) {
     if (error) {
